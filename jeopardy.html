@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeopardy - 5 Equipos</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: url('https://ecosistemas.win/wp-content/uploads/fondo-oceano.jpg') no-repeat center center fixed; background-size: cover;  }
+        .board { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; width: 80%; margin: auto; }
+        .cell { background: rgba(0, 247, 255, 0.7); color: white; padding: 20px; font-size: 20px; cursor: pointer; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
+        .cell.answered { background: gray; pointer-events: none; }
+        .popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 2px solid black; }
+        .scores { display: flex; justify-content: space-around; margin: 20px; font-size: 24px; font-weight: bold; gap: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Jeopardy - 5 Equipos</h1>
+    <div class="scores" id="scores"></div>
+    <div class="board" id="board"></div>
+    <div class="popup" id="popup">
+        <p id="question"></p>
+        <button onclick="answer(true)">Correcto</button>
+        <button onclick="answer(false)">Incorrecto</button>
+    </div>
+    <script>
+        const teams = ["Equipo 1", "Equipo 2", "Equipo 3", "Equipo 4", "Equipo 5"];
+        let scores = Array(5).fill(0);
+        let questions = [
+            ["Pregunta 1", "Pregunta 2", "Pregunta 3", "Pregunta 4", "Pregunta 5"],
+            ["Pregunta 6", "Pregunta 7", "Pregunta 8", "Pregunta 9", "Pregunta 10"],
+            ["Pregunta 11", "Pregunta 12", "Pregunta 13", "Pregunta 14", "Pregunta 15"]
+        ];
+        let currentQuestion = null;
+        let currentCell = null;
+        let currentTeam = 0;
+        
+        function renderBoard() {
+            const board = document.getElementById("board");
+            board.innerHTML = "";
+            questions.forEach((row, rowIndex) => {
+                row.forEach((question, colIndex) => {
+                    let cell = document.createElement("div");
+                    cell.className = "cell";
+                    cell.textContent = (rowIndex + 1) * 100;
+                    cell.onclick = () => showQuestion(question, cell);
+                    board.appendChild(cell);
+                });
+            });
+        }
+        
+        function renderScores() {
+            const scoreBoard = document.getElementById("scores");
+            let maxScore = Math.max(...scores);
+            scoreBoard.innerHTML = teams.map((team, index) => {
+                let crown = scores[index] === maxScore && maxScore > 0 ? '👑' : '';
+                return `<div style='background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);'>${crown} ${team}: ${scores[index]}</div>`;
+            }).join("");
+        }
+        
+        function showQuestion(question, cell) {
+            currentQuestion = question;
+            currentCell = cell;
+            document.getElementById("question").textContent = question;
+            document.getElementById("popup").style.display = "block";
+        }
+        
+        function answer(correct) {
+            if (correct) {
+                scores[currentTeam] += parseInt(currentCell.textContent);
+            }
+            currentCell.classList.add("answered");
+            document.getElementById("popup").style.display = "none";
+            renderScores();
+            currentTeam = (currentTeam + 1) % teams.length;
+        }
+        
+        renderBoard();
+        renderScores();
+    </script>
+</body>
+</html>
