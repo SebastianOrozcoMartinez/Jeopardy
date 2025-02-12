@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <title>Jeopardy - 5 Equipos</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Share Tech Mono', bold;
             text-align: center;
             background: url('https://ecosistemas.win/wp-content/uploads/fondo-oceano.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
+        }
+        .title {
+            font-family: 'Bebas Neue', cursive, bold;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px;
         }
         .board {
             display: grid;
@@ -93,7 +105,7 @@
     </style>
 </head>
 <body>
-    <div> <h1>Jeopardy - 5 Equipos</h1> </div>
+    <div class="title"> <h1>Jeopardy!</h1> </div>
     <div class="scores" id="scores"></div>
     <div class="board" id="board"></div>
     <div class="popup" id="popup">
