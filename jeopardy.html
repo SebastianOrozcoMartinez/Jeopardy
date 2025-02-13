@@ -70,6 +70,7 @@
         .popup p {
             font-size: 22px;
             font-weight: bold;
+            color: black;
         }
         .popup button {
             margin: 10px;
@@ -117,21 +118,21 @@
         const teams = ["Equipo 1", "Equipo 2", "Equipo 3", "Equipo 4", "Equipo 5"];
         let scores = Array(5).fill(0);
         let questions = [
-            ["Pregunta 1",
-            "Pregunta 2",
-            "Pregunta 3",
-            "Pregunta 4",
-            "Pregunta 5"],
-            ["Pregunta 6",
-            "Pregunta 7",
-            "Pregunta 8",
-            "Pregunta 9",
-            "Pregunta 10"],
-            ["Pregunta 11",
-            "Pregunta 12",
-            "Pregunta 13",
-            "Pregunta 14",
-            "Pregunta 15"]
+            ["Di una ventaja no mencionada antes",
+            "Di una desventaja no mencionada antes",
+            "Di una desventaja no mencionada antes",
+            "Di una ventaja no mencionada antes",
+            "Di una ventaja no mencionada antes"],
+            ["Menciona una aplicación no mencionada antes",
+            "¿Por que esta energía es limpia?",
+            "¿Por que daña al medio ambiente?",
+            "¿Por que es importante?",
+            "¿Que es la marea?"],
+            ["¿En que estados de México se produce energía mareomotriz?",
+            "Menciona 3 desventajas de la energía mareomotriz",
+            "Menciona 3 ventajas de la energía mareomotriz",
+            "¿Por que es inagotable?",
+            "¿Como funciona?"]
         ];
         let currentQuestion = null;
         let currentCell = null;
